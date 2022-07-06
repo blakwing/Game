@@ -14,9 +14,9 @@ screen = pygame.display.set_mode(window_size)
 screen.fill(background)
 pygame.display.flip()
 
-second_guy = GameObject("chico.png", 2, (0, 0), (255, 255, 255))
+second_guy = GameObject("assets/art/chico.png", 2, (0, 0), (255, 255, 255))
 
-map_generator("map1.txt", "Grass_Tile.png", 2)
+map_generator("assets/maps/map1.txt", "assets/art/Grass_Tile.png", 2)
 
 while 1:
 
