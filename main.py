@@ -3,7 +3,7 @@ import sys
 from entities import entity, GameObject, map_generator
 pygame.init()
 
-
+# test commit
 clock = pygame.time.Clock()
 
 window_size = (700, 500)
