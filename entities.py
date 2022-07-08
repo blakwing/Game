@@ -25,6 +25,13 @@ class GameObject(entity):
             "right": False,
             "left": False,
         }
+        self.collision_kind = {
+            "top": False,
+            "bottom": False,
+            "right": False,
+            "left": False,
+
+        }
         super().__init__(image, scale_size, start_pos, color_key)
 
     def collision_test(self):
