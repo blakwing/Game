@@ -37,9 +37,6 @@ while 1:
             if event.key == pygame.K_UP:
                 second_guy.moving["up"] = True
 
-            if event.key == pygame.K_DOWN:
-                second_guy.moving["down"] = True
-
         if event.type == pygame.KEYUP:
 
             if event.key == pygame.K_LEFT:
@@ -51,20 +48,19 @@ while 1:
             if event.key == pygame.K_UP:
                 second_guy.moving["up"] = False
 
-            if event.key == pygame.K_DOWN:
-                second_guy.moving["down"] = False
-
 # Y coordinate movement
 
     if second_guy.collision_kind["bottom"]:
         y_momentum = 0
-    if second_guy.collision_kind["bottom"] is not True:
+    else:
         y_momentum += 0.3
+
     if second_guy.moving["up"] and second_guy.collision_kind["bottom"]:
         y_momentum += -8
 
     if y_momentum > 7:
         y_momentum = 7
+
 # X coordinate movement
 
     if second_guy.moving["left"]:
