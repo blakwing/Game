@@ -16,11 +16,16 @@ pygame.display.flip()
 
 x_momentum = 0
 y_momentum = 0
-second_guy = GameObject("assets/art/chico.png", 2, (0, 0), (255, 255, 255))
 
+second_guy = GameObject("assets/art/chico.png", 2, (0, 0), (255, 255, 255))
 map_generator("assets/maps/map1.txt", "assets/art/Grass_Tile.png", 2)
 
+camera_value = [20, -100]
 while 1:
+    scroll = [0, 0]
+    scroll[0] += (second_guy.rectangle.x-scroll[0]-((window_size[0]-camera_value[0])/2))/20
+    scroll[1] += (second_guy.rectangle.y-scroll[1]-((window_size[1]-camera_value[1])/2))/20
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             print("game quit!")
@@ -30,10 +35,10 @@ while 1:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 second_guy.moving["left"] = True
-
+                camera_value[0] = -200
             if event.key == pygame.K_RIGHT:
                 second_guy.moving["right"] = True
-
+                camera_value[0] = 200
             if event.key == pygame.K_UP:
                 second_guy.moving["up"] = True
 
@@ -60,7 +65,6 @@ while 1:
 
     if y_momentum > 7:
         y_momentum = 7
-
 # X coordinate movement
 
     if second_guy.moving["left"]:
@@ -86,6 +90,7 @@ while 1:
     screen.fill(background)
 
     for i in entity.entity_list:
+        i.rectangle.move_ip(-scroll[0], -scroll[1])
         screen.blit(i.image_entity, i.rectangle)
 
-    pygame.display.update(entity.rect_list)
+    pygame.display.update()
