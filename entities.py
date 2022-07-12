@@ -5,9 +5,8 @@ class entity():
     entity_list = list()
     rect_list = list()
 
-    def __init__(self, image, scale_size=1, start_pos=(0, 0), color_key=(121, 255, 121)):
-        self.image_entity = pygame.image.load(image).convert()
-        self.image_entity.set_colorkey((color_key))
+    def __init__(self, image, scale_size=1, start_pos=(0, 0)):
+        self.image_entity = pygame.image.load(image).convert_alpha()
         self.rectangle = self.image_entity.get_rect()
         self.image_entity = pygame.transform.scale(self.image_entity, (self.rectangle.width*scale_size, self.rectangle.height*scale_size))
         self.rectangle = self.image_entity.get_rect()
@@ -18,7 +17,7 @@ class entity():
 
 class GameObject(entity):
 
-    def __init__(self, image, scale_size=1, start_pos=(0, 0), color_key=(121, 255, 121)):
+    def __init__(self, image, scale_size=1, start_pos=(0, 0)):
         self.moving = {
             "up": False,
             "down": False,
@@ -32,7 +31,7 @@ class GameObject(entity):
             "left": False,
 
         }
-        super().__init__(image, scale_size, start_pos, color_key)
+        super().__init__(image, scale_size, start_pos)
 
     def collision_test(self):
         self.hit_list = list()
@@ -78,7 +77,7 @@ class GameObject(entity):
                     self.collision_kind["top"] = True
 
 
-def map_generator(path, tiles, scale_size=1, color_key=(121, 255, 121)):
+def map_generator(path, tiles, scale_size=1):
     file = open(path, 'r')
     data = file.read()
     file.close()
@@ -88,7 +87,7 @@ def map_generator(path, tiles, scale_size=1, color_key=(121, 255, 121)):
         x = 0
         for tile in list(row):
             if tile == "1":
-                GameObject(tiles, scale_size, (x*16*scale_size, y*16*scale_size), color_key)
+                GameObject(tiles, scale_size, (x*16*scale_size, y*16*scale_size))
             x += 1
         y += 1
 
