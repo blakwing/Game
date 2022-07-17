@@ -17,7 +17,7 @@ pygame.display.flip()
 x_momentum = 0
 y_momentum = 0
 
-second_guy = GameObject("assets/art/chico.png", 2, (90, 90))
+second_guy = GameObject("assets/art/chico.png", 2)
 
 map_generator("assets/maps/map1.txt", "assets/art/Grass_Tile.png", 2)
 
@@ -94,6 +94,7 @@ while 1:
 
     for i in entity.entity_list:
         i.rectangle.move_ip(-camera[0], -camera[1])
+        i.update_rect.move_ip(-camera[0], -camera[1])
         screen.blit(i.image_entity, i.rectangle)
 
-    pygame.display.update(entity.rect_list)
+    pygame.display.update(entity.update_list)
